@@ -1,0 +1,765 @@
+/*@import url('https://fonts.googleapis.com/css?family=Noto+Sans+HK&display=swap');
+font-family: 'Noto Sans HK', sans-serif;*/
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+$primary-color: #deaa86;
+$light-grey: #eee;
+$dark-grey: #222;
+$dark-blue: #15141b;
+$white: #fff;
+
+/*===================GLOBAL STYLES =========================*/
+html, body {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 62.5%; /*(10/16)*100*/
+    margin: 0;
+    padding: 0;
+}
+.small-underline {
+    width: 9rem;
+    height: .1rem;
+    margin: 0 auto 1rem auto;
+    background-color: $primary-color;
+}
+.large-underline {
+    width: 20rem;
+    height: .1rem;
+    margin: 0 auto 1rem auto;
+    background-color: $primary-color;
+}
+
+/*=========================== NAVBAR / SIDEBAR ===========================*/
+.sidebar {
+    width: 8rem;
+    height: 100%;
+    background-color: #eee;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+
+    .menu-icon {
+        margin-top: 3rem;
+        cursor: pointer;
+    }
+    .line {
+        height: .2rem;
+        width: 2.5rem;
+        background-color: $dark-grey;
+        margin-bottom: .6rem;
+    }
+    .line-1, .line-3 {
+        width: 1.8rem;
+        transition: all .5s;
+    }
+    .menu-icon:hover .line {
+        width: 2.5rem;
+    }
+
+    .social-icons {
+        list-style-type: none;
+        padding: 0;
+        height: 25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .social-link {
+        font-size: 2rem;
+        color: #777;
+        transition: color .3s;
+    }
+    .social-link:hover {
+        color: $primary-color;
+    }
+    .login {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        color: #555;
+    }
+}
+
+.navigation {
+    position: fixed;
+    left: -32rem;
+    width: 40rem;
+    height: 100%;
+    background: linear-gradient(to top, rgba(34, 32, 41, 0.8), rgba(34, 32, 41, 0.6)), url(../img/nav-bg.jpeg) no-repeat center / cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+    transition: left .8s cubic-bezier(1, 0, 0, 1);
+
+    &-heading {
+        font-size: 3.5rem;
+        font-weight: 300;
+        letter-spacing: .2rem;
+        color: $primary-color;
+        text-align: center;
+    }
+    &-search {
+        position: relative;
+    }
+    &-search-input {
+        width: 30rem;
+        padding: 1rem 2rem;
+        background-color: rgba(0, 0, 0, 0.3);
+        font-size: 1.6rem;
+        color: $primary-color;
+        letter-spacing: .1rem;
+        outline: none;
+        border: .1rem solid $primary-color;
+        border-radius: 10rem;
+        transition: background-color 0.3s;
+    }
+    &-search-input:focus {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    &-search-btn {
+        border: none;
+        background-color: transparent;
+        color: $primary-color;
+        font-size: 1.7rem;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+    &-list {
+        list-style-type: none;
+        padding: 0;
+        height: 28rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &-link {
+        color: $white;
+        font-size: 1.6rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        text-decoration: none;
+        position: relative;
+        transition: color .3s;
+
+        &::before {
+            content: " ";
+            width: 0;
+            height: .1rem;
+            background-color: $primary-color;
+            position: absolute;
+            left: -4rem;
+            top: .8rem;
+            transition: width .5s cubic-bezier(1, 0, 0, 1);
+        }
+        &::after {
+            content: " ";
+            width: 0;
+            height: .1rem;
+            background-color: $primary-color;
+            position: absolute;
+            right: -4rem;
+            top: .8rem;
+            transition: width .5s cubic-bezier(1, 0, 0, 1);
+        }
+        &:hover {
+            color: $primary-color;
+        }
+        &:hover::before,
+        &:hover::after {
+            width: 3rem;
+        }
+    }
+    p {
+        color: $white;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+}
+.checkbox:checked ~ .navigation {
+    left: 8rem;
+}
+.checkbox:checked ~ .sidebar .line-1 {
+    transform: rotate(-405deg) translate(-5px, 6px);
+    width: 2.5rem;
+}
+.checkbox:checked ~ .sidebar .line-2 {
+    opacity: 0;
+}
+.checkbox:checked ~ .sidebar .line-3 {
+    transform: rotate(405deg) translate(-5px, -6px);
+    width: 2.5rem;
+}
+
+/*=========================== HEADER ===========================*/
+.header {
+    margin-left: 8rem;
+    height: 100vh;
+    background: linear-gradient(to top, rgba(34, 32, 41, 0.8), rgba(34, 32, 41, 0.6)), url(../img/banner.jpg) no-repeat center / cover;
+
+    .brand {
+        display: flex;
+        cursor: pointer;
+    }
+    .hotel-heading {
+        color: $primary-color;
+        font-size: 2.7rem;
+        font-weight: 300;
+        letter-spacing: .2rem;
+    }
+    .banner {
+        color: $light-grey;
+        height: 65rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &-logo {
+            animation: anim .3s;
+        }
+
+        &-heading {
+            font-size: 7rem;
+            font-weight: 300;
+            margin-bottom: 0;
+            animation: anim 2s;
+        }
+        &-paragraph {
+            font-size: 3.5rem;
+            font-weight: 300;
+            animation: anim 1.5s .5s backwards;
+        }
+        &-button {
+            width: 21rem;
+            padding: 1.2rem 2rem;
+            font-size: 1.8rem;
+            color: $dark-grey;
+            letter-spacing: .1rem;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 10rem;
+            outline: none;
+            transition: all .3s ease-in-out;
+            cursor: pointer;
+            animation: anim 1s 1s backwards;
+
+            &:hover {
+                background-color: $primary-color;
+                color: $white;
+            }
+            &:active {
+                transform: translateY(.2rem);
+            }
+        }
+    }
+}
+
+/*=========================== ABOUT US ===========================*/
+.about-us {
+    margin-left: 8rem;
+    display: flex;
+    background-color: #ddd;
+
+    &-content {
+        flex: 0 1 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10rem;
+        box-sizing: border-box;
+    }
+    &-heading {
+        font-size: 4rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: #555;
+    }
+    .sub-heading {
+        font-size: 2.5rem;
+        color: $primary-color;
+        letter-spacing: .2rem;
+        font-weight: 300;
+    }
+    &-images {
+        flex: 1 1;
+        position: relative;
+
+        img {
+            width: 32rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            box-shadow: 0 3rem 6rem rgba(0, 0, 0, .4);
+            border-radius: .4rem;
+            border: .2rem solid $primary-color;
+        }
+        .image-1 {
+            transform: translate(-20%, -90%);
+        }
+        .image-2 {
+            transform: translate(-70%, -70%);
+        }
+        .image-3 {
+            transform: translate(-50%, -50%);
+        }
+        .image-4 {
+            transform: translate(-30%, -30%);
+        }
+    }
+    &-paragraph {
+        font-size: 1.6rem;
+        font-weight: 300;
+        text-align: center;
+        margin-bottom: 5rem;
+        line-height: 1.2;
+    }
+    &-btn {
+        width: 15rem;
+        padding: .7rem .5rem;
+        border: .1rem solid $primary-color;
+        font-size: 1.2rem;
+        color: $primary-color;
+        text-transform: uppercase;
+        background-color: transparent;
+        outline: none;
+        cursor: pointer;
+        transition: all .3s;
+        
+        .btn-arrow {
+            margin-left: .5rem;
+            transition: margin-left .4s;
+        }
+
+        &:hover .btn-arrow {
+            margin-left: 1.5rem;
+        }
+    }
+}
+
+/*=========================== ROOMS ===========================*/
+/******** Common header *******/
+.common-header {
+    padding: 5rem;
+    text-align: center;
+    color: $primary-color;
+}
+.common-heading {
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: .2rem;
+}
+/***************** rooms ***********************/
+.rooms {
+    margin-left: 8rem;
+}
+.rooms-cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.room-card {
+    width: 60rem;
+    margin: 5rem;
+    background: $dark-blue;
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, .3);
+
+    &-content {
+        color: #ddd;
+        padding: 2rem;
+    }
+    &-heading {
+        margin: 0;
+        font-size: 3rem;
+        font-weight: 300;
+    }
+    &-paragraph {
+        font-size: 1.5rem;
+        color: #777;
+    }
+    &-btn {
+        width: 15rem;
+        padding: .7rem .5rem;
+        border: .1rem solid $primary-color;
+        font-size: 1.2rem;
+        color: $primary-color;
+        text-transform: uppercase;
+        background-color: transparent;
+        outline: none;
+        cursor: pointer;
+        transition: all .3s;
+        
+        .btn-arrow {
+            margin-left: .5rem;
+            transition: margin-left .4s;
+        }
+
+        &:hover .btn-arrow {
+            margin-left: 1.5rem;
+        }
+    }
+}
+.room-price {
+    font-size: 5rem;
+    font-weight: 300;
+    text-align: right;
+    margin: 0;
+}
+.room-img {
+    width: 100%;
+}
+.rooms-btn-wrapper {
+    text-align: center;
+}
+.rooms-btn {
+    padding: 1.2rem 2rem;
+    font-size: 1.8rem;
+    background-color: transparent;
+    color: $primary-color;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+    border: .2rem solid $primary-color;
+    border-radius: 10rem;
+    outline: none;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    animation: anim 1s 1s backwards;
+    box-shadow: 0 1.5rem 6rem rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        background-color: $primary-color;
+        color: $white;
+    }
+    &:active {
+        transform: translateY(.2rem);
+    }
+}
+
+/*=========================== CUSTOMERS ===========================*/
+.customers {
+    margin-left: 8rem;
+    margin-top: 7rem;
+    padding-bottom: 7rem;
+    background-color: $dark-blue;
+
+    &-paragraph {
+        font-size: 1.8rem;
+        color: #ddd;
+        width: 50%;
+        margin: 2rem auto 8rem auto;
+        text-align: center;
+    }
+    &-card-wrapper {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}
+.customer-card {
+    background-color: #eee;
+    width: 60rem;
+    display: flex;
+
+    &-image-wrapper {
+        margin: auto 0;
+    }
+
+    &-image {
+        width: 20rem;
+        padding: 1.5rem 0;
+        margin-left: -1.3rem;
+    }
+}
+.customer-info {
+    padding: 0 2rem;
+}
+.customer-fullname {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+.customer-paragraph-1 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: $primary-color;
+}
+.customer-paragraph-2 {
+    font-size: 1.3rem;
+    font-weight: 300;
+}
+
+/*=========================== FOOTER ===========================*/
+.footer {
+    margin-left: 8rem;
+
+    .main-part {
+        display: flex;
+        justify-content: space-between;
+        background-color: #1c1c1c;
+        padding: 4rem;
+    }
+
+    &-heading {
+        font-size: 2.5rem;
+        font-weight: 300;
+        color: $primary-color;
+        margin: 1rem 0 3rem 0;
+    }
+    &-list {
+        list-style-type: none;
+        padding: 0;
+
+        &-item {
+            margin-bottom: 2rem;
+        }
+
+        &-link {
+            font-size: 1.4rem;
+            text-decoration: none;
+            color: #bbb;
+            transition: all .3s;
+
+            &:hover {
+                color: $primary-color;
+                margin-left: .2rem;
+            }
+        }
+    }
+
+    .contact {
+        font-size: 1.5rem;
+        color: #bbb;
+        margin-bottom: 4rem;
+    }
+    &-form {
+        display: flex;
+    }
+    &-input {
+        width: 25rem;
+        padding: 1rem;
+        font-size: 1.8rem;
+        color: #444;
+        outline: none;
+    }
+    &-btn {
+        padding: 1rem;
+        background-color: $primary-color;
+        color: $white;
+        border: none;
+    }
+
+    .gallery {
+        max-width: 45rem;
+
+        &-image-wrapper {
+            width: 12rem;
+            margin: .4rem;
+            overflow: hidden;
+        }
+        &-images {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    &-image {
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        transition: all.5s;
+
+        &:hover {
+            transform: scale(1.1);
+            opacity: .8;
+        }
+    }
+
+    .creator-part {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #111;
+        padding: 0 4em;
+
+        .copyright-text {
+            font-size: 1.3rem;
+            color: #aaa;
+        }
+        .text-right {
+            font-size: 1.4rem;
+            color: #bbb;
+
+            i {
+                margin: .5rem;
+                color: tomato;
+            }
+            a {
+                color: $primary-color;
+                text-decoration: none;
+            }
+        }
+    }
+    
+}
+
+/*=========================== MEDIA QUERIES ===========================*/
+@media(max-width: 1400px) {
+    .customers-card-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .customer-card:first-child {
+        margin-bottom: 3rem;
+    }
+    .main-part {
+        flex-direction: column;
+    }
+    .footer-list {
+        display: flex;
+
+        &-item {
+            margin-right: 3rem;
+        }
+    }
+}
+
+@media(max-width: 1200px) {
+    .about-us {
+        flex-direction: column;
+        padding-bottom: 30rem;
+
+        &-content {
+            margin-bottom: 13rem;
+        }
+        .image {
+            width: 25rem;
+        }
+    }
+}
+
+@media(max-width: 900px) {
+    .banner {
+        text-align: center;
+
+        &-heading {
+            font-size: 4.7rem;
+        }
+        &-paragraph {
+            font-size: 2.6rem;
+        }
+        &-button {
+            width: 16rem;
+            font-size: 1.5rem;
+        }
+    }
+}
+@media(max-width: 750px) {
+    .customer-card {
+        flex-direction: column;
+        width: 35rem;
+
+        &-image {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+    }
+    .footer-list {
+        display: block;
+    }
+    .creator-part {
+        flex-direction: column;
+        text-align: center;
+        line-height: 1.5;
+        
+        .copyright-text {
+            order: 1;
+        }
+    }
+}
+
+@media(max-width: 500px) {
+    .navigation {
+        width: 28rem;
+
+        &-search-input {
+            width: 20rem;
+        }
+    }
+    .banner {
+        height: 100%;
+        margin-top: 5rem;
+
+        &-heading {
+            font-size: 3rem;
+        }
+        &-paragraph {
+            font-size: 2rem;
+        }
+    }
+    .about-us {
+        padding-bottom: 20rem;
+
+        &-heading {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        .sub-heading {
+            font-size: 2rem;
+            text-align: center;
+        }
+        &-content {
+            padding: 5rem;
+        }
+
+        .image {
+            width: 15rem;
+        }
+    }
+    .common-heading {
+        font-size: 2rem;
+    }
+    .small-underline {
+        width: 5rem;
+    }
+    .large-underline {
+        width: 12rem;
+    }
+    .room-card-heading {
+        font-size: 2.2rem;
+    }
+    .room-price {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+    .rooms-btn {
+        font-size: 1.3rem;
+    }
+    .customers-paragraph {
+        font-size: 1.4rem;
+        width: 80%;
+    }
+    .footer-input {
+        width: 60%;
+    }
+    .gallery-image-wrapper {
+        width: 9rem;
+    }
+}
+
+/*=========================== KEYFRAMES ===========================*/
+@keyframes anim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
